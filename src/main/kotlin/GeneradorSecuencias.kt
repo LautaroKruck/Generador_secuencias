@@ -6,20 +6,28 @@ class GeneradorSecuencias (private val info: IEntradaSalida){
     private fun lineSequence(limit: Int = Int.MAX_VALUE) =
         generateSequence { readLine() }.constrainOnce().take(limit)
 
-    private fun fraseIncremental() {
-        sec = (lineSequence(info.recibir()))
+    fun fraseIncremental(n: Int) {
+        sec = lineSequence(n)
+        sec.forEach { linea ->
+            info.mostrar(linea)
+        }
     }
 
-    private fun fraseFinal() {
-
+    fun fraseFinal(n: Int) {
+        sec = lineSequence(n)
+        info.mostrar(sec.joinToString(" "))
     }
 
-    private fun getSec() {
-
+    private fun getSec(): String {
+        if (::sec.isInitialized) {
+            return sec.joinToString(" ")
+        } else {
+            throw UninitializedPropertyAccessException("La secuencia 'sec' no ha sido inicializada.")
+        }
     }
 
     private fun mostrarSec() {
-
+        info.mostrar(getSec())
     }
 
 }
