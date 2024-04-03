@@ -22,7 +22,7 @@ class GeneradorSecuencias (private val info: IEntradaSalida){
         if (::sec.isInitialized) {
             return sec.joinToString(" ")
         } else {
-            throw UninitializedPropertyAccessException("La secuencia 'sec' no ha sido inicializada.")
+            return ""
         }
     }
 
